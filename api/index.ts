@@ -30,22 +30,44 @@ type Cache = { app?: Promise<Express> };
 const globalCache = globalThis as typeof globalThis & { __fleet?: Cache };
 const cache: Cache = (globalCache.__fleet ??= {});
 
+/**
+ * A cold-start failure that names the setting at fault.
+ *
+ * Variable *names* are not secrets and a nameless "misconfigured" 500 is
+ * impossible to act on, so the message says which one. Values are never
+ * included.
+ */
+class ConfigError extends Error {
+  constructor(public readonly detail: string) {
+    super(detail);
+  }
+}
+
 function required(name: string): string {
   const value = process.env[name];
-  if (!value) throw new Error(`${name} is not set in the deployment environment`);
+  if (!value) throw new ConfigError(`${name} is not set. Add it in Vercel > Settings > Environment Variables, then redeploy.`);
   return value;
 }
 
 async function build(): Promise<Express> {
   const uri = required('MONGODB_URI');
   const secret = required('SESSION_SECRET');
-  if (secret.length < 32) throw new Error('SESSION_SECRET must be at least 32 characters');
+  if (secret.length < 32) throw new ConfigError(`SESSION_SECRET is ${secret.length} characters; it must be at least 32.`);
 
   // Atlas free tier (M0) is a real 3-node replica set, so transactions work.
   // connectDb refuses to start against a standalone mongod.
   if (mongoose.connection.readyState !== 1) {
-    await connectDb(uri);
-    await setupIndexes();
+    try {
+      await connectDb(uri);
+      await setupIndexes();
+    } catch (e) {
+      const why = (e as Error).message;
+      throw new ConfigError(
+        /replica set/i.test(why)
+          ? 'MONGODB_URI points at a standalone MongoDB. This app needs a replica set for transactions — MongoDB Atlas M0 is one; a plain mongod is not.'
+          : `Could not reach the database named in MONGODB_URI (${why}). Check the connection string, the database user, and that Atlas Network Access allows 0.0.0.0/0.`,
+      );
+    }
   }
 
   // Writes are same-origin only, so the deployed URL must be declared. Vercel
@@ -55,7 +77,7 @@ async function build(): Promise<Express> {
     process.env.VERCEL_URL && `https://${process.env.VERCEL_URL}`,
     process.env.VERCEL_PROJECT_PRODUCTION_URL && `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}`,
   ].filter((o): o is string => !!o);
-  if (origins.length === 0) throw new Error('Set ORIGIN to the deployed https:// URL');
+  if (origins.length === 0) throw new ConfigError('No ORIGIN could be determined. Set ORIGIN to the deployed https:// URL.');
 
   return createApp({
     sessionSecret: secret,
@@ -73,8 +95,17 @@ export default async function handler(req: IncomingMessage, res: ServerResponse)
     // A failed cold start must not be cached, or every later request repeats it.
     cache.app = undefined;
     console.error('[api] cold start failed', error);
+    const known = error instanceof ConfigError;
     res.statusCode = 500;
     res.setHeader('content-type', 'application/json');
-    res.end(JSON.stringify({ error: 'Server misconfigured. Check the deployment environment variables.' }));
+    res.setHeader('cache-control', 'no-store');
+    res.end(
+      JSON.stringify({
+        error: known
+          ? (error as ConfigError).detail
+          : 'The server failed to start. Check the deployment logs for details.',
+        hint: 'This is a startup failure, not a sign-in problem.',
+      }),
+    );
   }
 }
