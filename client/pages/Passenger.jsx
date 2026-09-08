@@ -120,6 +120,9 @@ export default function Passenger() {
     [bookings],
   );
   const selected = bookings.find((b) => b._id === selectedId) ?? active[0] ?? bookings[0] ?? null;
+  const cities = reference?.cities ?? [];
+  const city = cities.find((c) => c.id === form.city) ?? cities[0];
+  const addresses = city?.places ?? reference?.addresses ?? [];
   const isAirport = airportSide(form, city, 'pickup') || airportSide(form, city, 'destination');
   const fare = estimate(form, city);
   const set = (patch) => setForm((f) => ({ ...f, ...patch }));
@@ -174,9 +177,6 @@ export default function Passenger() {
 
   if (!reference && !data) return <Spinner label="Loading booking options" />;
 
-  const cities = reference?.cities ?? [];
-  const city = cities.find((c) => c.id === form.city) ?? cities[0];
-  const addresses = city?.places ?? reference?.addresses ?? [];
 
   return (
     <main className="passenger-workspace mx-auto max-w-6xl space-y-5 px-4 py-5 sm:px-6">

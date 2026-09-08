@@ -14,6 +14,9 @@ import BookingSummary, { Journey } from '../client/components/BookingSummary.jsx
 import RouteMap from '../client/components/RouteMap.jsx';
 import PlaceField from '../client/components/PlaceField.jsx';
 import Landing from '../client/pages/Landing.jsx';
+import Passenger from '../client/pages/Passenger.jsx';
+import Dispatch from '../client/pages/Dispatch.jsx';
+import Driver from '../client/pages/Driver.jsx';
 import FleetSupport, { Answer, Guidance, BookingFacts } from '../client/components/FleetSupport.jsx';
 import { SessionContext } from '../client/lib/session.jsx';
 import FlightStatus, { Body as FlightBody } from '../client/components/FlightStatus.jsx';
@@ -76,9 +79,31 @@ const flightOk = {
 const flightApi = (state) => ({ flight: async () => state });
 
 const session = (role) => ({
-  api: { askFleet: async () => replyBase }, user: { id: 'u1', role, name: 'Test User' },
+  api: {
+    askFleet: async () => replyBase,
+    session: async () => ({}), reference: async () => ({}), state: async () => ({}),
+    booking: async () => ({ events: [], payments: [] }), notifications: async () => ({ rows: [] }),
+    flight: async () => ({ state: 'not_applicable' }), autocomplete: async () => ({ results: [] }),
+    act: async () => ({}), createBooking: async () => ({}), setDuty: async () => ({}),
+    assistantDraft: async () => ({}), searchUK: async () => ({ results: [] }),
+  },
+  user: { id: 'u1', role, name: 'Test User' },
   seat: role, ready: true, error: null, signIn: () => {}, signOut: () => {},
 });
+
+/* The three workspaces, rendered whole.
+ *
+ * Components were covered but pages were not, so a reference error in a page
+ * body reached production: Passenger read `city` above its own declaration and
+ * white-screened, while Dispatch and Driver were fine. Rendering each page here
+ * catches that class of fault before it ships. */
+const page = (El, role) => (
+  <MemoryRouter>
+    <SessionContext.Provider value={session(role)}>
+      <El />
+    </SessionContext.Provider>
+  </MemoryRouter>
+);
 
 const cases = {
   'every icon': <>{ICON_NAMES.map((n) => <Icon key={n} name={n} />)}</>,
@@ -102,6 +127,9 @@ const cases = {
   'fields': <FieldGroup title="G" icon="users"><Field label="L" hint="h" required error="e" htmlFor="i"><input id="i" /></Field><DataRow label="D" icon="car" mono>v</DataRow></FieldGroup>,
   'connection': <><ConnectionStatus updatedAt={new Date()} offline={false} onRefresh={() => {}} /><ConnectionStatus updatedAt={null} offline compact /></>,
   'landing page': <MemoryRouter><Landing /></MemoryRouter>,
+  'page · passenger workspace': page(Passenger, 'passenger'),
+  'page · dispatch workspace': page(Dispatch, 'dispatch'),
+  'page · driver workspace': page(Driver, 'driver'),
   'ask fleet · passenger': <SessionContext.Provider value={session('passenger')}><FleetSupport /></SessionContext.Provider>,
   'ask fleet · driver': <SessionContext.Provider value={session('driver')}><FleetSupport /></SessionContext.Provider>,
   'ask fleet · dispatch': <SessionContext.Provider value={session('dispatch')}><FleetSupport /></SessionContext.Provider>,
