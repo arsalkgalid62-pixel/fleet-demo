@@ -1,0 +1,488 @@
+[
+  {
+    "id": "passenger-luggage",
+    "title": "Luggage and accessibility — demo guide",
+    "version": "demo-1",
+    "audience": [
+      "passenger",
+      "driver",
+      "dispatch"
+    ],
+    "status": "demo",
+    "reviewedAt": "2026-09-07",
+    "keywords": [
+      "luggage",
+      "bags",
+      "suitcases",
+      "wheelchair",
+      "accessible",
+      "accessibility"
+    ],
+    "text": "Demo guidance, not company-approved policy. Enter passenger count, luggage count and accessibility requirements on the booking form. The demo checks vehicle suitability when dispatch confirms a request. An accessible vehicle is not guaranteed until capacity has been checked. Ask the office about unusual luggage or equipment; no approved company limits have been supplied."
+  },
+  {
+    "id": "passenger-cancellation",
+    "title": "Cancellation — demo guide",
+    "version": "demo-1",
+    "audience": [
+      "passenger",
+      "driver",
+      "dispatch"
+    ],
+    "status": "demo",
+    "reviewedAt": "2026-09-07",
+    "keywords": [
+      "cancel",
+      "cancellation",
+      "refund",
+      "fee",
+      "policy"
+    ],
+    "text": "Demo guidance, not company-approved policy. Use the booking screen to request cancellation while the journey is requested or confirmed. A reason is required. This assistant cannot cancel a booking. No real cancellation fees, refunds or payments are processed. The operator's actual cancellation and refund policies have not been supplied; ask the office for approved terms."
+  },
+  {
+    "id": "airport-meeting",
+    "title": "Airport pickup — demo guide",
+    "version": "demo-1",
+    "audience": [
+      "passenger",
+      "driver",
+      "dispatch"
+    ],
+    "status": "demo",
+    "reviewedAt": "2026-09-07",
+    "keywords": [
+      "airport",
+      "terminal",
+      "meet",
+      "meeting",
+      "collection",
+      "flight",
+      "delay"
+    ],
+    "text": "Demo guidance, not company-approved policy. Check the meeting point recorded on your booking. Airport requests include a flight number, flight date and meeting point. Flight delays in this demo are simulated and require dispatcher review; they do not automatically change the agreed pickup time. No live flight feed or approved airport collection procedure is configured."
+  },
+  {
+    "id": "payment-preview",
+    "title": "Fares and payments — demo guide",
+    "version": "demo-1",
+    "audience": [
+      "passenger",
+      "driver",
+      "dispatch"
+    ],
+    "status": "demo",
+    "reviewedAt": "2026-09-07",
+    "keywords": [
+      "fare",
+      "price",
+      "cost",
+      "payment",
+      "paid",
+      "cash",
+      "card",
+      "receipt"
+    ],
+    "text": "Demo guidance, not company-approved policy. The live booking card shows the saved fare and payment status separately. All fares and payment outcomes are demonstrations. A completed journey can remain unpaid. Receipt previews are not proof of payment. The assistant cannot set a fare, collect money or change payment status."
+  },
+  {
+    "id": "driver-no-show",
+    "title": "Driver handbook: passenger no-show — demo",
+    "version": "demo-1",
+    "audience": [
+      "driver",
+      "dispatch"
+    ],
+    "status": "demo",
+    "reviewedAt": "2026-09-07",
+    "keywords": [
+      "no-show",
+      "absent",
+      "missing",
+      "passenger",
+      "wait",
+      "waiting"
+    ],
+    "text": "Internal demo guidance, not company-approved policy. If a passenger is absent at the agreed pickup point, refer the job to dispatch. Dispatch can record a no-show after the driver has arrived, with a reason. Do not invent an approved waiting period or waiting charge; neither has been supplied. The office-contact button is inactive in this demo."
+  },
+  {
+    "id": "driver-breakdown",
+    "title": "Driver handbook: breakdown reporting — demo",
+    "version": "demo-1",
+    "audience": [
+      "driver",
+      "dispatch"
+    ],
+    "status": "demo",
+    "reviewedAt": "2026-09-07",
+    "keywords": [
+      "breakdown",
+      "broken",
+      "vehicle",
+      "fault",
+      "procedure"
+    ],
+    "text": "Internal demo guidance, not company-approved policy. A vehicle fault needs dispatcher review and a human decision about the journey. This assistant cannot reassign the booking or change driver duty. No approved breakdown procedure, assistance contact or emergency workflow has been supplied. Obtain the operator's approved procedure before real use."
+  },
+  {
+    "id": "waiting-time",
+    "title": "Waiting time and grace period - demo guide",
+    "version": "vdemo-1",
+    "audience": [
+      "passenger",
+      "driver",
+      "dispatch"
+    ],
+    "status": "demo",
+    "reviewedAt": "2026-09-08",
+    "keywords": [
+      "waiting",
+      "wait",
+      "late",
+      "grace",
+      "delay",
+      "arrive",
+      "arrived",
+      "punctual"
+    ],
+    "text": "Demo guidance, not company-approved policy. The demo assumes a short free waiting period after the driver marks arrival, and that waiting beyond it may be chargeable. This build does not calculate or charge waiting time: the driver marks \"arrived\" and dispatch records any outcome manually. Real grace periods and charges have not been agreed with the operator - ask the office."
+  },
+  {
+    "id": "amend-booking",
+    "title": "Changing or amending a booking - demo guide",
+    "version": "vdemo-1",
+    "audience": [
+      "passenger",
+      "driver",
+      "dispatch"
+    ],
+    "status": "demo",
+    "reviewedAt": "2026-09-08",
+    "keywords": [
+      "change",
+      "amend",
+      "edit",
+      "modify",
+      "reschedule",
+      "update",
+      "move"
+    ],
+    "text": "Demo guidance, not company-approved policy. In this demo a booking cannot be edited after it is submitted. To change details, cancel the journey and request a new one; cancellation is available while a booking is awaiting review or confirmed. Dispatch can adjust the fare and record notes, but the pickup time and addresses are fixed once submitted. A production system would likely allow amendments - that has not been specified."
+  },
+  {
+    "id": "lost-property",
+    "title": "Lost property - demo guide",
+    "version": "vdemo-1",
+    "audience": [
+      "passenger",
+      "driver",
+      "dispatch"
+    ],
+    "status": "demo",
+    "reviewedAt": "2026-09-08",
+    "keywords": [
+      "lost",
+      "property",
+      "left",
+      "belongings",
+      "phone",
+      "wallet",
+      "forgot",
+      "missing"
+    ],
+    "text": "Demo guidance, not company-approved policy. If something is left in a vehicle, contact the office with the booking reference, the date and a description. The demo stores no lost-property records and has no messaging service, so nothing can be reported through this interface. The audit history shows which driver and vehicle were assigned, which is how the office would trace a journey."
+  },
+  {
+    "id": "child-seats",
+    "title": "Child seats and travelling with children - demo guide",
+    "version": "vdemo-1",
+    "audience": [
+      "passenger",
+      "driver",
+      "dispatch"
+    ],
+    "status": "demo",
+    "reviewedAt": "2026-09-08",
+    "keywords": [
+      "child",
+      "children",
+      "baby",
+      "infant",
+      "seat",
+      "booster",
+      "family"
+    ],
+    "text": "Demo guidance, not company-approved policy. Child seat availability is not modelled in this demo: vehicles carry a seat count, an accessibility flag and a luggage capacity, nothing more. Requests for child seats should be entered in the pickup instructions so dispatch sees them, but the system will not reserve or verify one. Legal requirements for child restraints have not been reviewed for this build."
+  },
+  {
+    "id": "assistance-animals",
+    "title": "Assistance dogs and pets - demo guide",
+    "version": "vdemo-1",
+    "audience": [
+      "passenger",
+      "driver",
+      "dispatch"
+    ],
+    "status": "demo",
+    "reviewedAt": "2026-09-08",
+    "keywords": [
+      "dog",
+      "dogs",
+      "pet",
+      "pets",
+      "animal",
+      "animals",
+      "assistance",
+      "cat"
+    ],
+    "text": "Demo guidance, not company-approved policy. Assistance dogs and other animals are not modelled in this demo. There is no field to declare an animal and no vehicle attribute recording whether one is accepted. Note the request in the pickup instructions so dispatch can see it. UK law on assistance dogs in licensed vehicles has not been reviewed for this build - ask the office before relying on anything here."
+  },
+  {
+    "id": "smoking-vehicles",
+    "title": "Smoking and vaping in vehicles - demo guide",
+    "version": "vdemo-1",
+    "audience": [
+      "passenger",
+      "driver",
+      "dispatch"
+    ],
+    "status": "demo",
+    "reviewedAt": "2026-09-08",
+    "keywords": [
+      "smoking",
+      "smoke",
+      "vape",
+      "vaping",
+      "cigarette",
+      "tobacco"
+    ],
+    "text": "Demo guidance, not company-approved policy. Smoking and vaping are assumed not to be permitted in any vehicle. This is a demo assumption presented for completeness; the operator has not supplied a policy, and the demo records no incidents or penalties."
+  },
+  {
+    "id": "accessible-vehicles",
+    "title": "Wheelchair-accessible vehicles - demo guide",
+    "version": "vdemo-1",
+    "audience": [
+      "passenger",
+      "driver",
+      "dispatch"
+    ],
+    "status": "demo",
+    "reviewedAt": "2026-09-08",
+    "keywords": [
+      "wheelchair",
+      "accessible",
+      "access",
+      "disabled",
+      "disability",
+      "ramp",
+      "mobility"
+    ],
+    "text": "Demo guidance, not company-approved policy. Tick \"I need a wheelchair-accessible vehicle\" when booking. The demo fleet has exactly one accessible vehicle, so two overlapping accessible journeys cannot both be confirmed - the second stays awaiting review rather than being falsely accepted. Accessibility is checked as a vehicle capability only; no equipment, training or assistance level is modelled."
+  },
+  {
+    "id": "receipts-payments",
+    "title": "Receipts and payment records - demo guide",
+    "version": "vdemo-1",
+    "audience": [
+      "passenger",
+      "driver",
+      "dispatch"
+    ],
+    "status": "demo",
+    "reviewedAt": "2026-09-08",
+    "keywords": [
+      "receipt",
+      "receipts",
+      "invoice",
+      "refund",
+      "charge",
+      "billing"
+    ],
+    "text": "Demo guidance, not company-approved policy. No card is charged anywhere in this demo and no receipt is issued. Dispatch records a simulated outcome - paid, pending or failed - against a completed journey, and that record is labelled \"not proof of payment\". Completing a journey does not mark it paid: lifecycle and payment are tracked separately on purpose. Refunds are not modelled."
+  },
+  {
+    "id": "complaints",
+    "title": "Raising a complaint - demo guide",
+    "version": "vdemo-1",
+    "audience": [
+      "passenger",
+      "driver",
+      "dispatch"
+    ],
+    "status": "demo",
+    "reviewedAt": "2026-09-08",
+    "keywords": [
+      "complaint",
+      "complain",
+      "feedback",
+      "issue",
+      "problem",
+      "unhappy",
+      "dispute"
+    ],
+    "text": "Demo guidance, not company-approved policy. Complaints cannot be raised through this demo: there is no messaging, ticketing or case system. Contact the office with the booking reference. Every journey keeps an ordered audit history of who did what and when, including cancellations and no-shows with their stated reasons, which is the record the office would review."
+  },
+  {
+    "id": "data-privacy",
+    "title": "What the demo stores about you - demo guide",
+    "version": "vdemo-1",
+    "audience": [
+      "passenger",
+      "driver",
+      "dispatch"
+    ],
+    "status": "demo",
+    "reviewedAt": "2026-09-08",
+    "keywords": [
+      "data",
+      "privacy",
+      "gdpr",
+      "personal",
+      "information",
+      "delete",
+      "retention"
+    ],
+    "text": "Demo guidance, not company-approved policy. This demo stores synthetic data only: contacts must be @example.invalid addresses, so no real person can be contacted. It keeps the booking, an audit history, simulated payment records and message previews that are never sent. Driver location is stored only while a job is active and is hidden once the journey ends. No retention schedule, deletion process or privacy notice has been agreed - those belong to a production phase."
+  },
+  {
+    "id": "driver-conduct",
+    "title": "Driver handbook: presentation and identification - demo",
+    "version": "vdemo-1",
+    "audience": [
+      "driver",
+      "dispatch"
+    ],
+    "status": "demo",
+    "reviewedAt": "2026-09-08",
+    "keywords": [
+      "conduct",
+      "uniform",
+      "identification",
+      "badge",
+      "licence",
+      "behaviour"
+    ],
+    "text": "Demo guidance, not company-approved policy. Drivers are assumed to carry their licensing authority badge and to be identifiable to passengers. The demo does not store licence numbers, expiry dates or badge details, and performs no compliance checks. Licensing requirements vary by authority and have not been reviewed for this build."
+  },
+  {
+    "id": "driver-vehicle-checks",
+    "title": "Driver handbook: vehicle checks - demo",
+    "version": "vdemo-1",
+    "audience": [
+      "driver",
+      "dispatch"
+    ],
+    "status": "demo",
+    "reviewedAt": "2026-09-08",
+    "keywords": [
+      "checks",
+      "inspection",
+      "tyres",
+      "roadworthy",
+      "defect",
+      "maintenance"
+    ],
+    "text": "Demo guidance, not company-approved policy. Drivers are assumed to check their allocated vehicle before going on duty. The demo records no checks, defects or maintenance history; going \"available\" is a duty state only and asserts nothing about the vehicle. Report a defect to the office directly - there is no defect reporting in this interface."
+  },
+  {
+    "id": "driver-incident",
+    "title": "Driver handbook: incidents and accidents - demo",
+    "version": "vdemo-1",
+    "audience": [
+      "driver",
+      "dispatch"
+    ],
+    "status": "demo",
+    "reviewedAt": "2026-09-08",
+    "keywords": [
+      "incident",
+      "accident",
+      "collision",
+      "crash",
+      "injury",
+      "emergency",
+      "police"
+    ],
+    "text": "Demo guidance, not company-approved policy. In a genuine emergency contact the emergency services first, then the office. This demo has no incident reporting, no emergency button and no way to alert dispatch other than the ordinary job actions. Nothing in this interface should be relied on during an incident."
+  },
+  {
+    "id": "driver-hours",
+    "title": "Driver handbook: hours and breaks - demo",
+    "version": "vdemo-1",
+    "audience": [
+      "driver",
+      "dispatch"
+    ],
+    "status": "demo",
+    "reviewedAt": "2026-09-08",
+    "keywords": [
+      "hours",
+      "break",
+      "breaks",
+      "fatigue",
+      "tired",
+      "rest",
+      "shift"
+    ],
+    "text": "Demo guidance, not company-approved policy. Use the duty control to go on break or off duty; the demo prevents changing duty while a job is still assigned, so release or finish work first. The demo does not track hours worked, enforce rest periods or warn about fatigue. Working time limits for licensed drivers have not been reviewed for this build."
+  },
+  {
+    "id": "dispatch-escalation",
+    "title": "Dispatch: when to escalate - demo",
+    "version": "vdemo-1",
+    "audience": [
+      "dispatch"
+    ],
+    "status": "demo",
+    "reviewedAt": "2026-09-08",
+    "keywords": [
+      "escalate",
+      "escalation",
+      "manager",
+      "urgent",
+      "override",
+      "stuck"
+    ],
+    "text": "Demo guidance, not company-approved policy. Dispatch-only demo guidance. If a job cannot be covered it stays awaiting review rather than being falsely confirmed - that is the intended behaviour, not a fault. Offers expire on their own and return to the queue. There is no escalation path, on-call rota or manager override in this build; contact the office by other means."
+  },
+  {
+    "id": "surge-pricing",
+    "title": "Peak-time pricing - DRAFT, not in use",
+    "version": "vdemo-1",
+    "audience": [
+      "passenger",
+      "driver",
+      "dispatch"
+    ],
+    "status": "draft",
+    "reviewedAt": "2026-09-08",
+    "keywords": [
+      "surge",
+      "peak",
+      "pricing",
+      "busy",
+      "multiplier"
+    ],
+    "text": "Demo guidance, not company-approved policy. This draft exists only to show that draft documents are never retrieved or shown to anyone. No peak pricing exists in the demo: fares are a flat demo tariff."
+  },
+  {
+    "id": "cancellation-v0",
+    "title": "Cancellation - superseded, retired",
+    "version": "vdemo-1",
+    "audience": [
+      "passenger",
+      "driver",
+      "dispatch"
+    ],
+    "status": "retired",
+    "reviewedAt": "2026-09-08",
+    "keywords": [
+      "retired",
+      "superseded",
+      "obsolete",
+      "previous"
+    ],
+    "text": "Demo guidance, not company-approved policy. A superseded version kept to show that retired documents are never retrieved. See the current cancellation guide instead."
+  }
+]

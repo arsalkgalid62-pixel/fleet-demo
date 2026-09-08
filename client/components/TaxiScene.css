@@ -1,0 +1,19 @@
+.taxi-scene{margin:32px 0 0;overflow:hidden;border:1px solid #284b40;border-radius:18px;background:#102d29;box-shadow:0 14px 36px -25px #102d2990;isolation:isolate}
+.taxi-scene__heading{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:12px;padding:18px 22px;color:#c7d3b9;font-size:10px;font-weight:700;letter-spacing:.16em}
+.taxi-scene__controls{display:flex;gap:8px;flex-wrap:wrap}
+.taxi-scene__heading button:disabled{opacity:.5;cursor:default}
+.taxi-scene__audio-error{padding:0 22px 12px;color:#e7ecda;font-size:12px}
+.taxi-scene__heading button{min-height:36px;flex-shrink:0;border:1px solid #547065;border-radius:99px;padding:5px 12px;color:#e7ecda;font-size:11px;letter-spacing:0;cursor:pointer;background:transparent}
+.taxi-scene__heading button:hover{background:#284b40}.taxi-scene__heading button:focus-visible{outline:2px solid #c6df68;outline-offset:3px}
+.taxi-scene svg{display:block;width:100%;height:auto}
+.taxi-scene figcaption{display:flex;justify-content:space-between;gap:12px;padding:15px 22px;border-top:1px solid #284b40;color:#d0dbc3;font-size:12px;line-height:1.5}
+.taxi-scene figcaption span:last-child{font-size:11px;color:#a8beac;white-space:nowrap}
+.taxi-scene__street{animation:taxi-street 32s linear infinite}.taxi-scene__road{animation:taxi-road 1.6s linear infinite}.taxi-scene__cab{animation:taxi-ride 2.8s ease-in-out infinite}.taxi-scene__wheel{animation:taxi-wheel 1s linear infinite;transform-box:fill-box;transform-origin:center}
+.taxi-scene__foreground{animation:taxi-road 1.6s linear infinite}
+.taxi-scene--paused *{animation-play-state:paused!important}
+@keyframes taxi-street{to{transform:translateX(-1100px)}}
+@keyframes taxi-road{to{transform:translateX(-160px)}}
+@keyframes taxi-ride{0%,100%{transform:translateY(0)}50%{transform:translateY(-2px)}}
+@keyframes taxi-wheel{to{transform:rotate(360deg)}}
+@media(max-width:600px){.taxi-scene__heading{padding:12px;font-size:8px;letter-spacing:.08em}.taxi-scene figcaption{padding:12px;flex-direction:column;gap:3px}.taxi-scene svg{width:150%;max-width:none;margin-left:-25%}}
+@media(prefers-reduced-motion:reduce){.taxi-scene *{animation:none!important}.taxi-scene__heading .taxi-scene__pause{display:none}}

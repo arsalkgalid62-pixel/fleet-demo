@@ -1,0 +1,200 @@
+@import 'tailwindcss';
+
+/*
+ * Fleet — design tokens.
+ *
+ * ink-400 is the lightest colour permitted for text on a light surface: it is
+ * the AA floor (5.06:1 on canvas). ink-300 and lighter are for icons, borders
+ * and dividers only. On dark panels the scale inverts — ink-400 drops to 3.05:1
+ * there, so dark surfaces use ink-300 or lighter for text.
+ *
+ * Midnight green carries the structure, warm off-white is the canvas, and lime
+ * is an accent used sparingly: live indicators, active states and the vehicle
+ * marker. Lime is never used for text on a light background — it does not meet
+ * contrast there. On light surfaces it appears only as a filled chip behind
+ * dark ink, or as a small non-text indicator.
+ */
+@theme {
+  /* Midnight green ramp. 900 is the brand ground, 50 is a tinted surface. */
+  --color-ink-950: #071613;
+  --color-ink-900: #0c211d;
+  --color-ink-800: #123029;
+  --color-ink-700: #1b423a;
+  --color-ink-600: #2a5850;
+  --color-ink-500: #3d635c;
+  --color-ink-400: #4f6f69;
+  --color-ink-300: #9bb4af;
+  --color-ink-200: #c6d5d1;
+  --color-ink-100: #e0e9e6;
+  --color-ink-50: #eff4f2;
+
+  /* Warm off-white canvas — deliberately not a cold grey. */
+  --color-canvas: #f7f5f0;
+  --color-canvas-sunk: #efece4;
+
+  /* Restrained lime accent. */
+  --color-lime-400: #c9ec4b;
+  --color-lime-500: #b2dc22;
+  --color-lime-600: #86a814;
+  --color-lime-700: #5f7a0d;
+
+  /* Status. Each is paired with text in the UI, never colour alone. */
+  --color-status-wait: #b45309;
+  --color-status-wait-bg: #fdf3e3;
+  --color-status-ok: #0f766e;
+  --color-status-ok-bg: #e6f4f2;
+  --color-status-live: #1d4ed8;
+  --color-status-live-bg: #e8eefc;
+  --color-status-stop: #b91c1c;
+  --color-status-stop-bg: #fdecec;
+
+  --font-sans: 'Inter var', 'Inter', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --font-mono: ui-monospace, 'SF Mono', 'Cascadia Mono', 'Roboto Mono', monospace;
+
+  --radius-panel: 0.75rem;
+}
+
+html {
+  color-scheme: light;
+}
+
+body {
+  @apply bg-canvas text-ink-900 font-sans antialiased;
+}
+
+/* Figures line up in tables, metrics and fares. */
+.tabular {
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: 'tnum' 1;
+}
+
+/* Driver screens are used one-handed; 56px is the minimum comfortable target. */
+.touch-target {
+  @apply min-h-14 px-5 text-base;
+}
+
+/*
+ * Focus is midnight green on light surfaces and lime on dark ones, so the ring
+ * is always visible against whatever is behind it.
+ */
+:where(a, button, input, select, textarea, [tabindex]):focus-visible {
+  @apply outline-2 outline-offset-2 outline-ink-900;
+}
+
+.on-dark :where(a, button, input, select, textarea, [tabindex]):focus-visible {
+  @apply outline-lime-400;
+}
+
+/* Skip link for keyboard users, revealed only on focus. */
+.skip-link {
+  @apply sr-only;
+}
+.skip-link:focus {
+  @apply not-sr-only fixed left-4 top-4 z-50 rounded-lg bg-ink-900 px-4 py-2 text-sm font-semibold text-white;
+}
+
+@keyframes fleet-pulse {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.35;
+  }
+}
+.pulse-dot {
+  animation: fleet-pulse 2s ease-in-out infinite;
+}
+
+@keyframes fleet-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+.spin {
+  animation: fleet-spin 0.7s linear infinite;
+}
+
+/* Motion is decorative here; none of it conveys information on its own. */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+/* Workspace refresh: shared surfaces and role-specific introductions. */
+.workspace-intro {
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  padding: clamp(1.5rem, 3vw, 2.5rem);
+  border-radius: 1.25rem;
+  background: linear-gradient(115deg, #0c211d, #1b423a);
+}
+.workspace-intro::after {
+  content: '';
+  position: absolute;
+  right: -4rem;
+  top: -8rem;
+  width: 24rem;
+  height: 24rem;
+  border: 1px solid #9bb4af35;
+  border-radius: 50%;
+  box-shadow: 0 0 0 3rem #9bb4af09, 0 0 0 6rem #9bb4af08;
+  pointer-events: none;
+}
+.workspace-shortcut {
+  display: inline-flex;
+  align-items: center;
+  gap: 1.5rem;
+  border: 1px solid #9bb4af66;
+  border-radius: .75rem;
+  padding: .85rem 1rem;
+  color: white;
+  font-size: .8rem;
+  font-weight: 600;
+}
+.workspace-shortcut:hover { background: #ffffff15; }
+.workspace-nav a {
+  display: inline-flex;
+  align-items: center;
+  gap: .5rem;
+  padding: .8rem 1rem;
+  border-bottom: 3px solid transparent;
+  color: var(--color-ink-500);
+  font-size: .8rem;
+  font-weight: 600;
+  white-space: nowrap;
+}
+.workspace-nav a:hover { background: var(--color-ink-50); }
+.workspace-nav a[aria-current='page'] {
+  color: var(--color-ink-900);
+  border-bottom-color: var(--color-ink-900);
+  background: var(--color-ink-50);
+}
+.fleet-panel { border-radius: 1rem; box-shadow: 0 4px 20px #0c211d05; }
+.fleet-panel > header { padding: 1rem 1.15rem; background: #eff4f245; }
+.fleet-panel > header h2 { text-transform: none; letter-spacing: -.01em; font-size: .95rem; color: var(--color-ink-900); }
+.seat-card { position: relative; padding: 1.6rem; border-radius: 1rem; transition: transform 180ms ease, box-shadow 180ms ease; }
+.seat-card:hover { transform: translateY(-4px); box-shadow: 0 12px 30px #0c211d12; }
+.sign-in-page form { padding: 1.5rem; background: white; border: 1px solid var(--color-ink-100); border-radius: 1.25rem; box-shadow: 0 20px 60px #0c211d08; }
+.driver-workspace .workspace-intro { min-height: 12rem; }
+.dispatch-workspace .xl\:sticky { top: 7.5rem; max-height: calc(100dvh - 8.5rem); }
+@media (max-width: 480px) {
+  .workspace-nav { justify-content: space-between; gap: 0; }
+  .workspace-nav a { font-size: .72rem; gap: .3rem; padding: .75rem .5rem; }
+  .workspace-intro h1 { font-size: 1.8rem; }
+  .workspace-intro { border-radius: 1rem; }
+}
+/* Allow intrinsic form controls and long journey labels to shrink inside grids. */
+.fleet-shell main .grid > *, .fleet-shell fieldset { min-width: 0; }
+.fleet-shell input, .fleet-shell select, .fleet-shell textarea { max-width: 100%; }
+.fleet-panel { overflow-wrap: anywhere; }
