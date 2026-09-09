@@ -919,3 +919,46 @@ suite were run for this visual change. This is a visual refresh, not a completed
 wizard or a replacement of the Ask Fleet interaction model.
 
 Final verification after all adjustments: npm run build passed; npm run ui:smoke passed all 39 render cases and formatters.
+
+## Hosted-model preparation — 8 September 2026
+
+Added public single-operator name/tagline settings in client/lib/operator.js, used by the
+shared wordmark and landing page. Defaults preserve Fleet. Documented the proposed owned,
+hosted model, existing role routes, domain responsibilities and outstanding scope in
+hosted-model.md. This does not implement multi-company tenancy, DNS, deployment or a new admin.
+
+Fixed local preview port drift: Vite now reads the local ORIGIN port, uses strictPort and
+proxies to the configured API PORT. Existing CSRF origin checks are unchanged. Preview now
+runs at http://127.0.0.1:5173. Dispatch sign-in succeeded in the actual browser, eliminating
+the earlier 5184-origin rejection. Dispatch mobile first viewport inspected at 390px;
+measured document width 375px, no horizontal overflow. This is not full TC-1–TC-55 coverage.
+
+Build passed. Initial simultaneous test/build tooling hit system-memory allocation failures.
+A later isolated UI smoke run passed all 42 render cases and formatters. Database suite
+rerun with one test file at a time hit MongoDB error 14031: available disk 269164544 bytes
+below its required minimum 524288000 bytes. Stopped that run; no database pass claimed.
+The in-test Promise.all races were not modified. Full booking rehearsal remains outstanding
+until adequate disk space is available. No database guard was weakened and no user data reset.
+
+Driver sign-in also succeeded; signed-in idle driver first viewport checked at 390px with document width 375px. Browser returned to the working landing preview on port 5173.
+
+Added white-label hosted route aliases: `/book` and `/login` open the passenger flow, while
+`/admin` opens the dispatcher workspace. Existing routes remain intact. This is the one-operator
+integration layer; no DNS, deployment, separate admin permissions or multi-company tenancy was added.
+
+## Hosted-model rehearsal — 9 September 2026
+
+After freeing disk space, the full database suite completed with **139 tests passed, 0 failed**
+against the real local MongoDB replica set. A browser rehearsal then created synthetic booking
+`FD-0FC8185A` using `hosted-rehearsal@example.invalid`, confirmed and reserved FD-01, offered it
+to A. Ashton, accepted it, advanced through driving, arrival and passenger-on-board, completed
+the journey, and recorded a simulated paid payment. Passenger/dispatch/driver status remained
+separate and consistent; no real contact, payment or message was used.
+
+The rehearsal exposed and fixed a presentation bug: the driver screen treated a completed record
+with `progress: arrived` as a current job. `selectCurrentJob()` now requires an active lifecycle
+status as well as progress, and the UI smoke suite includes closed-record regression checks.
+After completion the driver shows **No active job**, while earnings show the completed demo fare;
+dispatch shows payment **Paid** separately. `npm run build` passed and `npm run ui:smoke` passed
+all 42 render cases and formatters after the fix. C: has about 6.59 GB free. No deployment was
+performed.

@@ -1,11 +1,12 @@
 import { Link } from 'react-router-dom';
+import { operator } from '../lib/operator.js';
 import Icon from '../components/Icon.jsx';
 import { Wordmark } from '../components/SeatShell.jsx';
 import TaxiScene from '../components/TaxiScene.jsx';
 
 const SEATS = [
   {
-    to: '/passenger',
+    to: '/book',
     name: 'Passenger',
     icon: 'users',
     account: 'passenger',
@@ -44,7 +45,8 @@ export default function Landing() {
     <main className="mx-auto landing-page max-w-6xl px-5 py-8 sm:px-8 sm:py-12">
       <div className="flex items-center justify-between"><Wordmark /><span className="rounded-full border border-ink-200 px-3 py-1.5 text-xs font-semibold text-ink-600">Interactive fleet demo</span></div>
 
-      <h1 className="mt-12 max-w-3xl text-4xl font-bold leading-tight tracking-tight text-ink-900 sm:text-6xl">
+      <p className="mt-8 text-sm font-semibold text-ink-500">{operator.tagline}</p>
+      <h1 className="mt-4 max-w-3xl text-4xl font-bold leading-tight tracking-tight text-ink-900 sm:text-6xl">
         Every journey. <br /><span className="text-ink-500">Working together.</span>
       </h1>
       <p className="mt-4 max-w-2xl text-base leading-relaxed text-ink-600 sm:text-lg">

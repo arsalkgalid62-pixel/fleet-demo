@@ -16,7 +16,7 @@ import PlaceField from '../client/components/PlaceField.jsx';
 import Landing from '../client/pages/Landing.jsx';
 import Passenger from '../client/pages/Passenger.jsx';
 import Dispatch from '../client/pages/Dispatch.jsx';
-import Driver from '../client/pages/Driver.jsx';
+import Driver, { selectCurrentJob } from '../client/pages/Driver.jsx';
 import FleetSupport, { Answer, Guidance, BookingFacts } from '../client/components/FleetSupport.jsx';
 import { SessionContext } from '../client/lib/session.jsx';
 import FlightStatus, { Body as FlightBody } from '../client/components/FlightStatus.jsx';
@@ -151,6 +151,15 @@ const cases = {
 };
 
 let failed = 0;
+// Closed records keep their progress; they must not hide the next active job.
+for (const status of ['completed', 'cancelled', 'no_show']) {
+  const closed = { ...booking, status, progress: 'arrived' };
+  const active = { ...booking, _id: 'next', status: 'confirmed', progress: 'accepted' };
+  if (selectCurrentJob([closed, active]) !== active || selectCurrentJob([closed]) !== undefined) {
+    failed++;
+    console.log(`  FAIL driver current job ignores ${status}`);
+  }
+}
 for (const [name, element] of Object.entries(cases)) {
   try {
     const html = renderToString(element);

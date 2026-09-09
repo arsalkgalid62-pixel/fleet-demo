@@ -28,6 +28,13 @@ const NEXT_STEP = {
 
 const CACHE_KEY = 'fleet-demo.driver.lastJob';
 
+export function selectCurrentJob(bookings) {
+  return bookings.find((b) =>
+    b.status === 'in_progress' ||
+    (b.status === 'confirmed' && ['accepted', 'on_the_way', 'arrived'].includes(b.progress)),
+  );
+}
+
 export default function Driver() {
   const { api, user } = useSession();
   const [error, setError] = useState(null);
@@ -39,9 +46,7 @@ export default function Driver() {
   const bookings = data?.bookings ?? [];
   const driver = data?.fleet?.drivers?.[0] ?? null;
   const offer = bookings.find((b) => b.progress === 'offered');
-  const current = bookings.find(
-    (b) => b.status === 'in_progress' || ['accepted', 'on_the_way', 'arrived'].includes(b.progress),
-  );
+  const current = selectCurrentJob(bookings);
   const upcoming = bookings.filter((b) => b.status === 'confirmed' && b !== current && b !== offer);
   const done = bookings.filter((b) => b.status === 'completed');
   const earnings = done.reduce((sum, b) => sum + (b.fare.finalAmount ?? b.fare.amount), 0);

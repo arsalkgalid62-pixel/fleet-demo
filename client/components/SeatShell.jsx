@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { operator } from '../lib/operator.js';
 import { Link } from 'react-router-dom';
 import { SessionProvider, useSession } from '../lib/session.jsx';
 import Icon from './Icon.jsx';
@@ -24,7 +25,7 @@ export function Wordmark({ tone = 'dark', className = '' }) {
           tone === 'dark' ? 'text-ink-900' : 'text-white'
         }`}
       >
-        Fleet
+        {operator.name}
       </span>
     </span>
   );

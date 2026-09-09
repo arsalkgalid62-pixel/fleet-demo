@@ -17,6 +17,8 @@ export default function App() {
           </SeatShell>
         }
       />
+      <Route path="/book" element={<Navigate to="/passenger" replace />} />
+      <Route path="/login" element={<Navigate to="/passenger" replace />} />
       <Route
         path="/dispatch"
         element={
@@ -25,6 +27,7 @@ export default function App() {
           </SeatShell>
         }
       />
+      <Route path="/admin" element={<Navigate to="/dispatch" replace />} />
       <Route
         path="/driver"
         element={
